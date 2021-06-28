@@ -1,0 +1,167 @@
+var jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
+// import {List, Item} from 'linked-list'
+
+// var promisePool = new List();
+// var workId = 0;
+
+// class LinkedlIstItem extends Item {
+// 	constructor(value) {
+// 	  super()
+// 	  this.value = value
+// 	}
+  
+// 	getValue() {
+// 		return this.value;
+// 	}
+//   }
+
+// async function startAsync(maxTaskCount)
+// {
+// 	if (maxTaskCount > 32)
+// 		maxTaskCount = 32;
+
+// 	while (true) {
+
+// 		//최대 수치만큼 작업 중인 경우 작업을 하지 않는다.
+// 		if (promisePool.size >= maxTaskCount) {
+// 			continue;
+// 		}
+// 		var item =new LinkedlIstItem(() => {
+// 			return new Promise((resolve, reject) =>  
+// 			{
+// 				setTimeout(resolve, 1000, workId++);
+// 				console.log('start : ' + workId);
+// 			})
+// 			.then(value => 
+// 			{
+// 				console.log(value);
+// 				item.detach();
+// 			})
+// 			.catch(err => 
+// 			{
+// 				console.log(err);
+// 			})
+// 			}
+// 		);
+
+// 		promisePool.append(item);
+// 		item.getValue()();
+// 	}
+// }
+
+function sleep(ms) {
+	const wakeUpTime = Date.now() + ms;
+	while (Date.now() < wakeUpTime) {}
+  }
+
+/** ============================================================================
+ * 이 프로그램의 메인 함수입니다.
+ * ============================================================================ */
+async function main() {
+
+	// var tt = () => 
+	// {
+	// 	return new Promise((resolve, reject) =>
+	// 	{
+	// 		setTimeout(resolve, 1000, 1000);
+	// 	})
+	// 	.then(value =>
+	// 	{
+	// 		console.log(value);
+	// 	})
+	// };
+
+	// tt();
+
+
+	// sleep(500000);
+
+	//startAsync(10);
+	// const promArr = [
+	// 	new Promise((resolve, reject) => {
+	// 		setTimeout(resolve, 1000, '1000');
+	// 	}),
+	// 	new Promise((resolve, reject) => {
+	// 		//setTimeout(reject, 3000, '3000');
+	// 	}),
+	// 	new Promise((resolve, reject) => {
+	// 		setTimeout(resolve, 5000, '5000');
+	// 	})
+	// ];
+
+	// Promise..(promArr).then((values) =>
+	// {
+	// 	console.log(values);
+	// })
+	// .catch(error => 
+	// {
+	// 	console.log(error);
+	// });
+
+	//startAsync(10);
+
+
+	try {
+
+		// var promArr = [];
+		// var t0 = performance.now()
+
+		// console.log('시작');
+		// for (let i =0; i < 10; i++) {
+		// 	//var baekjoonDOM = await require('./baekjoon-crawler').getBackjoonProblemDOM(1000 + i);
+		// 	promArr.push(require('./baekjoon-crawler').getBackjoonProblemDOM(1000 + i));
+
+		// 	// if (!baekjoonDOM instanceof JSDOM) {
+		// 	// 	console.log(1000 + i  + ' 실패');
+		// 	// } else {
+		// 	// 	console.log(1000 + i  + ' 성공');
+		// 	// }
+		// }
+		
+		// Promise.all(promArr).then(async values =>  {
+		// 	var t1 = performance.now()
+		// 	var secs = (t1 - t0) / 1000;
+		// 	console.log(secs);
+		// 	console.log('시작');
+
+		// 	t0 = performance.now()
+		// 	for (let i =0; i < 10; i++) {
+		// 		var baekjoonDOM = await require('./baekjoon-crawler').getBackjoonProblemDOM(1000 + i);
+		// 	}
+		// 	t1 = performance.now()
+		// 	secs = (t1 - t0) / 1000;
+		// 	console.log(secs);
+		// })
+
+
+		var baekjoonDOM = await require('./baekjoon-crawler').getBackjoonProblemDOM(1931);
+		baekjoonDOM.parseAll();
+		baekjoonDOM.printInfo();
+
+	} catch (exception) {
+		console.error(exception);
+	}
+}
+
+
+
+
+
+	
+
+    // var ret = await httpRequester.changeGlobalDOM('http://hilite.me');
+
+	// fileSystem.writeFile("./myFile.txt", global.$('body').html(), function(err) {
+	// 	if(err) {
+	// 		return console.log(err);
+	// 	}
+	// 	console.log("The file was saved!");
+	// }); 
+	// console.log('start');
+
+
+
+
+main();
